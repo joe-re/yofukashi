@@ -6,7 +6,7 @@ gulp.task 'build', ->
   seq ['build:js', 'build:html']
 
 gulp.task 'build:js', ->
-  gulp.src 'src/index.js'
+  gulp.src 'src/**/*.js'
     .pipe babel { presets: ['es2015'] }
     .pipe gulp.dest('dist')
 

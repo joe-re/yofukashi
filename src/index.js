@@ -1,24 +1,38 @@
-'use strict';
+import app from 'app';
+import BrowserWindow from 'browser-window';
+import ClashReporter from 'crash-reporter';
+import NodeTwitterApi from 'node-twitter-api';
 
-var app = require('app');
-var BrowserWindow = require('browser-window');
+ClashReporter.start();
 
-require('crash-reporter').start();
+let mainWindow = null;
 
-var mainWindow = null;
-
-app.on('window-all-closed', function() {
-  if (process.platform != 'darwin')
+app.on('window-all-closed', () => {
+  if (process.platform !== 'darwin') {
     app.quit();
+  }
 });
 
-app.on('ready', function() {
+app.on('ready', () => {
+  const twitter = new NodeTwitterApi({
+    consumerKey: 'sKog2zZ9TvRWpHne98d0cHrHM',
+    consumerSecret: 'rTyJIcNrcAFlT4t8llbpx274PbkmuHwnDG8IVX5pD7TcjA3fD5'
+  });
 
-  // ブラウザ(Chromium)の起動, 初期画面のロード
-  mainWindow = new BrowserWindow({width: 800, height: 600});
-  mainWindow.loadUrl('file://' + __dirname + '/index.html');
-
-  mainWindow.on('closed', function() {
-    mainWindow = null;
+  twitter.getRequestToken((error, requestToken, requestTokenSecret) => {
+    const authUrl = twitter.getAuthUrl(requestToken);
+    const loginWindow = new BrowserWindow({ width: 800, height: 600, 'node-integration': false });
+    loginWindow.webContents.on('will-navigate', (e, url) => {
+      let matched;
+      if (matched = url.match(/\?oauth_token=([^&]*)&oauth_verifier=([^&]*)/)) {
+        twitter.getAccessToken(requestToken, requestTokenSecret, matched[2], (error, accessToken, accessTokenSecret) => {
+          console.log('accessToken', accessToken);
+          console.log('accessTokenSecret', accessTokenSecret);
+        });
+      }
+      e.preventDefault();
+      setTimeout(() => loginWindow.close(), 0);
+    });
+    loginWindow.loadUrl(authUrl);
   });
 });
