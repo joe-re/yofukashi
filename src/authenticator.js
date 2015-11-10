@@ -2,32 +2,36 @@ import BrowserWindow from 'browser-window';
 import NodeTwitterApi from 'node-twitter-api';
 
 const twitter = new NodeTwitterApi({
+  callback: 'http://example.com',
   consumerKey: 'sKog2zZ9TvRWpHne98d0cHrHM',
   consumerSecret: 'rTyJIcNrcAFlT4t8llbpx274PbkmuHwnDG8IVX5pD7TcjA3fD5'
 });
 
+let authenticatedToken = {};
+
 const Authenticator = {
-  openAuthenicationWindow: () => {
+  openAuthenicationWindow: (callback) => {
     twitter.getRequestToken((_error, reqToken, reqTokenSecret) => {
       const authUrl = twitter.getAuthUrl(reqToken);
       const loginWindow = new BrowserWindow({ width: 800, height: 600, 'node-integration': false });
       loginWindow.webContents.on('will-navigate', (e, url) => {
-        e.preventDefault();
-        const m = url.match(/\?oauth_token=([^&]*)&oauth_verifier=([^&]*)/);
         const closeWindow = () => setTimeout(() => loginWindow.close(), 0);
-        if (!m) {
-          closeWindow();
-          return;
+        let matched;
+        if (matched = url.match(/\?oauth_token=([^&]*)&oauth_verifier=([^&]*)/)) {
+          twitter.getAccessToken(reqToken, reqTokenSecret, matched[2], (__error, accessToken, accessTokenSecret) => {
+            authenticatedToken = { accessToken, accessTokenSecret };
+            if (callback) {
+              callback.call();
+            }
+          });
         }
-        twitter.getAccessToken(reqToken, reqTokenSecret, m[2], (__error, accessToken, accessTokenSecret) => {
-          this.accessToken = accessToken;
-          this.accessTokenSecret = accessTokenSecret;
-        });
+        e.preventDefault();
         closeWindow();
       });
       loginWindow.loadUrl(authUrl);
     });
-  }
+  },
+  authenticatedToken: () => authenticatedToken
 };
 
 export default Authenticator;

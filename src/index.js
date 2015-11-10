@@ -1,7 +1,7 @@
 import app from 'app';
-// import BrowserWindow from 'browser-window';
 import ClashReporter from 'crash-reporter';
 import Authenticator from './authenticator';
+import MainWindow from './main_window';
 
 ClashReporter.start();
 
@@ -12,5 +12,5 @@ app.on('window-all-closed', () => {
 });
 
 app.on('ready', () => {
-  Authenticator.openAuthenicationWindow();
+  Authenticator.openAuthenicationWindow(() => new MainWindow());
 });
