@@ -1,5 +1,16 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import Timeline from './components/timeline';
+import { render } from 'react-dom';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import App from './containers/App';
+import reducers from './reducers';
 
-ReactDOM.render(<Timeline/>, document.getElementById('application'));
+const store = createStore(reducers);
+console.log(store);
+const rootElement = document.getElementById('application');
+render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  rootElement
+);
