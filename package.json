@@ -2,7 +2,7 @@
   "name": "yofukashi",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/index.js",
+  "main": "dist/browser/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
