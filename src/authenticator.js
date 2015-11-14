@@ -1,13 +1,18 @@
 import BrowserWindow from 'browser-window';
 import NodeTwitterApi from 'node-twitter-api';
 
+global.twitterSignature = {
+  consumerKey: 'sKog2zZ9TvRWpHne98d0cHrHM',
+  consumerSecret: 'rTyJIcNrcAFlT4t8llbpx274PbkmuHwnDG8IVX5pD7TcjA3fD5',
+  accessToken: '',
+  accessTokenSecret: ''
+};
+
 const twitter = new NodeTwitterApi({
   callback: 'http://example.com',
-  consumerKey: 'sKog2zZ9TvRWpHne98d0cHrHM',
-  consumerSecret: 'rTyJIcNrcAFlT4t8llbpx274PbkmuHwnDG8IVX5pD7TcjA3fD5'
+  consumerKey: global.twitterSignature.consumerKey,
+  consumerSecret: global.twitterSignature.consumerSecret
 });
-
-let authenticatedToken = {};
 
 const Authenticator = {
   openAuthenicationWindow: (callback) => {
@@ -19,7 +24,8 @@ const Authenticator = {
         let matched;
         if (matched = url.match(/\?oauth_token=([^&]*)&oauth_verifier=([^&]*)/)) {
           twitter.getAccessToken(reqToken, reqTokenSecret, matched[2], (__error, accessToken, accessTokenSecret) => {
-            authenticatedToken = { accessToken, accessTokenSecret };
+            global.twitterSignature.accessToken = accessToken;
+            global.twitterSignature.accessTokenSecret = accessTokenSecret;
             if (callback) {
               callback.call();
             }
@@ -30,8 +36,7 @@ const Authenticator = {
       });
       loginWindow.loadUrl(authUrl);
     });
-  },
-  authenticatedToken: () => authenticatedToken
+  }
 };
 
 export default Authenticator;
