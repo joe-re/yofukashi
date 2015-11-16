@@ -5,7 +5,7 @@ import * as TimelineActions from '../actions/timeline';
 
 function mapStateToProps(state) {
   return {
-    counter: state.timeline
+    timeline: state.timeline
   };
 }
 

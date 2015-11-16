@@ -1,9 +1,9 @@
-import { INCREMENT_COUNTER } from '../actions/timeline';
+import { GET_TIMELINE } from '../actions/timeline';
 
-export default function counter(state = 0, action) {
+export default function counter(state = [], action) {
   switch (action.type) {
-  case INCREMENT_COUNTER:
-    return state + 1;
+  case GET_TIMELINE:
+    return action.tweets;
   default:
     return state;
   }

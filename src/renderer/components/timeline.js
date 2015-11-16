@@ -2,11 +2,12 @@ import React, { PropTypes } from 'react';
 
 export default class Timeline extends React.Component {
   render() {
-    const { increment, counter } = this.props;
+    const { timeline, getTimeline } = this.props;
+    const textes = timeline.map((tweet) => <p>{tweet.text}</p>);
     return(
       <p>
-        Clicked: {counter} times
-        <button onClick={increment}>+</button>
+        <button onClick={getTimeline}>GET!</button>
+        {textes}
       </p>
     );
   }
@@ -14,5 +15,5 @@ export default class Timeline extends React.Component {
 
 Timeline.propTypes = {
   increment: PropTypes.func.isRequired,
-  counter: PropTypes.number.isRequired
+  timeline: PropTypes.array.isRequired
 };

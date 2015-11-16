@@ -1,12 +1,19 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import App from './containers/App';
 import reducers from './reducers';
+import thunk from 'redux-thunk';
+import logger from 'redux-logger';
 
-const store = createStore(reducers);
-console.log(store);
+const middleware = process.env.NODE_ENV === 'production' ?
+  [ thunk ] :
+  [ thunk, logger() ];
+
+const createStoreWithMiddleware = applyMiddleware(...middleware)(createStore);
+const store = createStoreWithMiddleware(reducers);
+
 const rootElement = document.getElementById('application');
 render(
   <Provider store={store}>
