@@ -1,7 +1,9 @@
+/* @flow */
+
 import React, { PropTypes } from 'react';
 
 export default class Tweet extends React.Component {
-  render() {
+  render(): ReactElement {
     const { tweet } = this.props;
 
     return (
