@@ -1,9 +1,16 @@
-import { GET_TIMELINE } from '../actions/timeline';
+/* @flow */
 
-export default function counter(state = [], action) {
+import { List } from 'immutable';
+import { GET_TIMELINE, TWEET } from '../actions/timeline';
+
+type State = List<Object>;
+
+export default function timeline(state: State = List(), action: any): State {
   switch (action.type) {
   case GET_TIMELINE:
-    return action.tweets;
+    return List(action.tweets);
+  case TWEET:
+    return state.unshift(action.tweet);
   default:
     return state;
   }

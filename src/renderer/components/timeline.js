@@ -17,6 +17,5 @@ export default class Timeline extends React.Component {
 }
 
 Timeline.propTypes = {
-  increment: PropTypes.func.isRequired,
   timeline: PropTypes.array.isRequired
 };

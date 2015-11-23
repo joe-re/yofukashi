@@ -11,6 +11,7 @@
   "license": "MIT",
   "dependencies": {
     "events": "^1.1.0",
+    "immutable": "^3.7.5",
     "node-twitter-api": "^1.6.1",
     "react": "^0.14.2",
     "react-dom": "^0.14.2",

@@ -1,13 +1,7 @@
 import TwitterClient from '../lib/twitter_client';
 
-export const INCREMENT_COUNTER = 'INCREMENT_COUNTER';
 export const GET_TIMELINE = 'GET_TIMELINE';
-
-export function increment() {
-  return {
-    type: INCREMENT_COUNTER
-  };
-}
+export const TWEET = 'TWEET';
 
 export function getTimeline() {
   return dispatch => {
@@ -16,6 +10,11 @@ export function getTimeline() {
         type: GET_TIMELINE,
         tweets: data.tweets
       });
+    });
+
+    const timeline = TwitterClient.get().subscribeHomeTimeline();
+    timeline.on('tweet', (tweet) => {
+      dispatch({ type: TWEET, tweet });
     });
   };
 }
