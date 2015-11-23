@@ -34,7 +34,7 @@ const Authenticator = {
         e.preventDefault();
         closeWindow();
       });
-      loginWindow.loadUrl(authUrl);
+      loginWindow.loadURL(authUrl);
     });
   }
 };
