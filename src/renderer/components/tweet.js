@@ -15,7 +15,7 @@ export default class Tweet extends React.Component {
     }
     return this.props.tweet.extended_entities.media.filter((media) => {
       return media.type === 'photo';
-    }).map((media) => <PostedImage media={media} />);
+    }).map((media, index) => <PostedImage media={media} key={index} />);
   }
 
   render(): ReactElement {
