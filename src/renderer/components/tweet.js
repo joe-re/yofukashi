@@ -8,6 +8,15 @@ export default class Tweet extends React.Component {
     return Moment(new Date(tweetTime)).format('YYYY-MM-DD hh:mm:ss');
   }
 
+  getImages(tweet: any): ?ReactElement {
+    if (!(tweet.extended_entities && tweet.extended_entities.media)) {
+      return;
+    }
+    return this.props.tweet.extended_entities.media.filter((media) => {
+      return media.type === 'photo';
+    }).map((media) => <img className="posted-image" src={media.media_url_https} />);
+  }
+
   render(): ReactElement {
     const { tweet } = this.props;
 
@@ -30,6 +39,9 @@ export default class Tweet extends React.Component {
           </div>
           <div className="tweet-text">
             {tweet.text}
+          </div>
+          <div className="tweet-posted-images-area">
+            {this.getImages(tweet)}
           </div>
         </div>
       </div>

@@ -32,3 +32,13 @@
   color: $sub-text-color;
   font-size: 14px;
 }
+
+.tweet-posted-images-area {
+  max-height: 500px;
+  overflow: hidden;
+}
+
+.posted-image {
+  margin-right: 4px;
+  max-width: 200px;
+}
