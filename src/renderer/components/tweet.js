@@ -2,6 +2,7 @@
 
 import React, { PropTypes } from 'react';
 import Moment from 'moment';
+import PostedImage from './posted_image';
 
 export default class Tweet extends React.Component {
   getHumanReadableTime(tweetTime: string): string {
@@ -14,7 +15,7 @@ export default class Tweet extends React.Component {
     }
     return this.props.tweet.extended_entities.media.filter((media) => {
       return media.type === 'photo';
-    }).map((media) => <img className="posted-image" src={media.media_url_https} />);
+    }).map((media) => <PostedImage media={media} />);
   }
 
   render(): ReactElement {
