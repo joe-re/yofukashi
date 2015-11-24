@@ -4,7 +4,7 @@ import React, { PropTypes } from 'react';
 import Moment from 'moment';
 
 export default class Tweet extends React.Component {
-  getHumanReadableTime(tweetTime: string) {
+  getHumanReadableTime(tweetTime: string): string {
     return Moment(new Date(tweetTime)).format('YYYY-MM-DD hh:mm:ss');
   }
 
@@ -16,7 +16,7 @@ export default class Tweet extends React.Component {
         <div className="tweet-avator">
           <img src={tweet.user.profile_image_url} height="48" width="48" />
         </div>
-        <div className="tweet-body">
+        <div className="tweet-content">
           <div className="tweet-names">
             <span className="tweet-display-name">
               {tweet.user.name}
@@ -24,12 +24,12 @@ export default class Tweet extends React.Component {
             <span className="tweet-screen-name">
               @{tweet.user.screen_name}
             </span>
-            <span>
+            <span className="tweet-posted-time">
               {this.getHumanReadableTime(tweet.created_at)}
             </span>
-            <div className="tweet-text">
-              {tweet.text}
-            </div>
+          </div>
+          <div className="tweet-text">
+            {tweet.text}
           </div>
         </div>
       </div>
