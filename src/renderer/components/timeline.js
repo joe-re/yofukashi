@@ -1,5 +1,4 @@
 /* @flow */
-
 import React, { PropTypes } from 'react';
 import Tweet from './tweet';
 import { List } from 'immutable';

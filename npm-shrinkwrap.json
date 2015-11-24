@@ -8704,6 +8704,16 @@
         }
       }
     },
+    "immutable": {
+      "version": "3.7.5",
+      "from": "immutable@*",
+      "resolved": "https://registry.npmjs.org/immutable/-/immutable-3.7.5.tgz"
+    },
+    "moment": {
+      "version": "2.10.6",
+      "from": "moment@*",
+      "resolved": "https://registry.npmjs.org/moment/-/moment-2.10.6.tgz"
+    },
     "node-twitter-api": {
       "version": "1.6.1",
       "from": "node-twitter-api@*",

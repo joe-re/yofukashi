@@ -1,8 +1,13 @@
 /* @flow */
 
 import React, { PropTypes } from 'react';
+import Moment from 'moment';
 
 export default class Tweet extends React.Component {
+  getHumanReadableTime(tweetTime: string) {
+    return Moment(new Date(tweetTime)).format('YYYY-MM-DD hh:mm:ss');
+  }
+
   render(): ReactElement {
     const { tweet } = this.props;
 
@@ -18,6 +23,9 @@ export default class Tweet extends React.Component {
             </span>
             <span className="tweet-screen-name">
               @{tweet.user.screen_name}
+            </span>
+            <span>
+              {this.getHumanReadableTime(tweet.created_at)}
             </span>
             <div className="tweet-text">
               {tweet.text}
