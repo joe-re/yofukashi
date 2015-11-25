@@ -1,7 +1,6 @@
 .ReactModal__Overlay {
-  -webkit-perspective: 600;
-  perspective: 600;
   opacity: 0;
+  perspective: 600;
 }
 
 .ReactModal__Overlay--after-open {
@@ -10,11 +9,11 @@
 }
 
 .ReactModal__Content {
-  -webkit-transform: scale(0.5) rotateX(-30deg);
+  transform: scale(.5) rotateX(-30deg);
 }
 
 .ReactModal__Content--after-open {
-  -webkit-transform: scale(1) rotateX(0deg);
+  transform: scale(1) rotateX(0deg);
   transition: all 150ms ease-in;
 }
 
@@ -23,6 +22,6 @@
 }
 
 .ReactModal__Content--before-close {
-  -webkit-transform: scale(0.5) rotateX(30deg);
+  transform: scale(.5) rotateX(30deg);
   transition: all 150ms ease-in;
 }

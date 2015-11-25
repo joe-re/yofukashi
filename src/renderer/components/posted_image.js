@@ -26,6 +26,7 @@ export default class PostedImage extends React.Component {
       <div className="posted-image">
         <img className="posted-image-preview" src={media.media_url_https} onClick={this.openModal.bind(this)} />
         <Modal
+          closeTimeoutMS={150}
           isOpen={this.state.modalIsOpen}
           onRequestClose={this.closeModal.bind(this)}
         >
