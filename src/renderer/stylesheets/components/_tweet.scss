@@ -9,12 +9,12 @@
 .tweet-avator {
   height: 48px;
   width: 48px;
+  margin-right: 8px;
 }
 
 .tweet-content {
   display: flex;
   flex-direction: column;
-  margin: 8px;
 }
 
 .tweet-display-name {
@@ -31,6 +31,12 @@
 .tweet-posted-time {
   color: $sub-text-color;
   font-size: 14px;
+}
+
+.tweet-link-text {
+  color: $link-text-color;
+  cursor: pointer;
+  &:hover { text-decoration: underline; }
 }
 
 .tweet-posted-images-area {
