@@ -1,26 +1,12 @@
 import React from 'react';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-import Timeline from '../components/timeline';
-import * as TimelineActions from '../actions/timeline';
+import TimelineContainer from './timeline_container';
 
 class App extends React.Component {
   render() {
-    const { timeline, getTimeline } = this.props;
     return (
-      <Timeline timeline={timeline} onGetTimeline={getTimeline} />
+      <TimelineContainer />
     );
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    timeline: state.timeline
-  };
-}
-
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators(TimelineActions, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;
