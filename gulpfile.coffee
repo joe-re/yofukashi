@@ -8,7 +8,7 @@ gulp.task 'clean', (cb)->
   del(['dist'], cb)
 
 gulp.task 'build', ['clean'], ->
-  seq ['build:js', 'build:html', 'build:scss']
+  seq ['build:js', 'build:html', 'build:scss', 'build:font-awesome']
 
 gulp.task 'build:js', ->
   gulp.src 'src/**/*.js'
@@ -17,12 +17,16 @@ gulp.task 'build:js', ->
 
 gulp.task 'build:scss', ->
   gulp.src 'src/**/*.scss'
-    .pipe sass().on('error', sass.logError)
+    .pipe sass({ includePaths: ['node_modules'] }).on('error', sass.logError)
     .pipe gulp.dest('dist')
 
 gulp.task 'build:html', ->
   gulp.src 'src/**/*.html'
     .pipe gulp.dest('dist')
+
+gulp.task 'build:font-awesome', ->
+  gulp.src('node_modules/font-awesome/fonts/*')
+    .pipe gulp.dest('dist/renderer/fonts')
 
 gulp.task 'watch', ['build'], ->
   gulp.watch 'src/**/*.js', ['build:js']

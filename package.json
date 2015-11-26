@@ -11,6 +11,7 @@
   "license": "MIT",
   "dependencies": {
     "events": "^1.1.0",
+    "font-awesome": "^4.4.0",
     "immutable": "^3.7.5",
     "moment": "^2.10.6",
     "node-twitter-api": "^1.6.1",
