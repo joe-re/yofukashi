@@ -16,9 +16,7 @@ export default class TwitterClient {
 
   fetchHomeTimelineTweets() {
     return new Promise((resolve, _reject) => {
-      this.client.get(
-        'statuses/home_timeline',
-        {},
+      this.client.get('statuses/home_timeline', {},
         (_error, tweets, response) => {
           resolve({ tweets, response });
         }
