@@ -10,8 +10,13 @@ export default class HeaderContainer extends React.Component {
     const { getTimeline } = this.props;
     return (
       <div className="header">
-        <button className="btn" onClick={getTimeline}>Refresh</button>
-        <button className="btn-primary">Tweet</button>
+        <button className="btn-primary new-tweet-button">
+          <i className="fa fa-pencil-square-o"></i> ツイート
+        </button>
+
+        <button className="btn-normal" onClick={getTimeline}>
+          <i className="fa fa-refresh"></i> リロード
+        </button>
       </div>
     );
   }

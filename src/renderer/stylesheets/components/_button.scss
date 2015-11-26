@@ -1,14 +1,29 @@
 @import '../config/color';
 
-.btn-primary {
-  background: $primary-background-color;
+@mixin button {
   border: 1px solid transparent;
   border-radius: 4px;
-  color: $primary-text-color;
   cursor: pointer;
   height: 32px;
+  font-size: 18px;
 }
 
-.btn-primary:hover {
-  background-color: #0AC4FC;
+.btn-normal {
+  @include button;
+  background: $normal-background-color;
+  color: $normal-text-color;
+
+  &:hover {
+    background-color: $normal-background-hover-color;
+  }
+}
+
+.btn-primary {
+  @include button;
+  background: $primary-background-color;
+  color: $primary-text-color;
+
+  &:hover {
+    background-color: $primary-background-hover-color;
+  }
 }
