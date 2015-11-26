@@ -14,11 +14,10 @@ class TimelineContainer extends React.Component {
   }
 
   render() {
-    const { timeline, getTimeline } = this.props;
+    const { timeline } = this.props;
     const tweets = timeline.map((tweet) => <Tweet key={tweet.id} tweet={tweet} />);
     return(
       <div>
-        <button onClick={getTimeline}>Refresh</button>
         {tweets}
       </div>
     );
