@@ -4,6 +4,11 @@
   margin-bottom: 8px;
   border-bottom: 1px solid $border-color;
   padding: 8px;
+  height: 36px;
+  width: 100%;
+  position: fixed;
+  background-color: $tweets-area-background-color;
+  top: 0;
 }
 
 .new-tweet-button {

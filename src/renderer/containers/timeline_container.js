@@ -17,7 +17,7 @@ class TimelineContainer extends React.Component {
     const { timeline } = this.props;
     const tweets = timeline.map((tweet) => <Tweet key={tweet.id} tweet={tweet} />);
     return(
-      <div>
+      <div className="timeline">
         {tweets}
       </div>
     );
