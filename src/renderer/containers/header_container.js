@@ -13,7 +13,7 @@ export default class HeaderContainer extends React.Component {
       <div className="header">
         <PostButton />
         <button className="btn-normal" onClick={getTimeline}>
-          <i className="fa fa-refresh"></i> リロード
+          <i className="fa fa-refresh">Reload</i>
         </button>
       </div>
     );

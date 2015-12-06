@@ -1,0 +1,16 @@
+.post-form {
+  .post-box {
+    border-color: $text-box-border-color;
+    border-radius: 3px;
+    font-size: large;
+    margin-bottom: 8px;
+    resize: none;
+    width: 100%;
+
+    &:focus {
+      border-color: $text-box-border-focus-color;
+      box-shadow: none;
+      outline: 0;
+    }
+  }
+}

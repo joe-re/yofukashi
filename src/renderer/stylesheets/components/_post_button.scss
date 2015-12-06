@@ -2,3 +2,14 @@
   display: inline-block;
   margin-right: 8px;
 }
+
+.post-modal {
+  height: 188px;
+  padding: 0;
+
+  .post-modal-inner {
+    background-color: $post-modal-background-color;
+    height: 148px;
+    padding: 20px;
+  }
+}
