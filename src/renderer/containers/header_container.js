@@ -4,16 +4,14 @@ import React, { PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as TimelineActions from '../actions/timeline';
+import PostButton from '../components/post_button';
 
 export default class HeaderContainer extends React.Component {
   render(): ReactElement {
     const { getTimeline } = this.props;
     return (
       <div className="header">
-        <button className="btn-primary new-tweet-button">
-          <i className="fa fa-pencil-square-o"></i> ツイート
-        </button>
-
+        <PostButton />
         <button className="btn-normal" onClick={getTimeline}>
           <i className="fa fa-refresh"></i> リロード
         </button>
