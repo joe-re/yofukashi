@@ -1,5 +1,7 @@
-import BrowserWindow from 'browser-window';
+import electron from 'electron';
 import NodeTwitterApi from 'node-twitter-api';
+
+const BrowserWindow = electron.BrowserWindow;
 
 global.twitterSignature = {
   consumerKey: 'sKog2zZ9TvRWpHne98d0cHrHM',
